@@ -18,6 +18,7 @@ package lk.ac.mrt.cse.dbs.simpleexpensemanager.control;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.AccountDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.TransactionDAO;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.exception.InvalidAccountException;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.InMemoryAccountDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.InMemoryTransactionDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.Account;
@@ -28,11 +29,15 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.Account;
 public class InMemoryDemoExpenseManager extends ExpenseManager {
 
     public InMemoryDemoExpenseManager() {
-        setup();
+        try {
+            setup();
+        } catch (InvalidAccountException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void setup() {
+    public void setup() throws InvalidAccountException {
         /*** Begin generating dummy data for In-Memory implementation ***/
 
         TransactionDAO inMemoryTransactionDAO = new InMemoryTransactionDAO();
@@ -46,6 +51,7 @@ public class InMemoryDemoExpenseManager extends ExpenseManager {
         Account dummyAcct2 = new Account("78945Z", "Clone BC", "Obi-Wan Kenobi", 80000.0);
         getAccountsDAO().addAccount(dummyAcct1);
         getAccountsDAO().addAccount(dummyAcct2);
+
 
         /*** End ***/
     }

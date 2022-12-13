@@ -30,6 +30,7 @@ public class Constants {
 
     public static final String TRANSACTIONS_TABLE = "Transaction_Table";
     public static final String TRANSACTION_ID = "Transaction_ID";
+    public static final String AMOUNT = "Amount";
     public static final String TRANSACTION_TYPE = "Transaction_Type";
     public static final String DATE = "Date";
 }

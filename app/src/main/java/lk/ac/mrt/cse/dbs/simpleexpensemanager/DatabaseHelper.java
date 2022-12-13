@@ -14,11 +14,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTableStatement=
-                "CREATE TABLE "+ACCOUNT_TABLE+"("+ACCOUNT_NO+" INTEGER PRIMARY KEY AUTOINCREMENT ,"+BANK+" TEXT PRIMARY KEY,"+HOLDER_NAME+" TEXT,"+BALANCE+" INT)";
+        String createAccTableStatement="CREATE TABLE " + ACCOUNT_TABLE + "(" + ACCOUNT_NO + " text PRIMARY KEY, " + BANK + " text, " + HOLDER_NAME + " text, " + BALANCE + " real);";
+        String createTranceTableStatement="CREATE TABLE " + TRANSACTIONS_TABLE + "(" + TRANSACTION_ID + " int PRIMARY KEY AUTOINCREMENT, " + ACCOUNT_NO + " int , "+AMOUNT+" real, " + TRANSACTION_TYPE + " text, " + DATE + " text, FOREIGN KEY("+ACCOUNT_NO+") REFERENCES "+ACCOUNT_TABLE+"("+ACCOUNT_NO+") );";
 
 
-        sqLiteDatabase.execSQL(createTableStatement);
+        sqLiteDatabase.execSQL(createAccTableStatement);
+        sqLiteDatabase.execSQL(createTranceTableStatement);
     }
 
     @Override
